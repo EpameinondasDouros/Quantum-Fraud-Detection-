@@ -1,9 +1,13 @@
 Quantum Fraud Detection: Leveraging Federated Learning with Blockchain
 
 🏆 Competition Overview
+
+
 This project was created for the Quantum Fraud Detection Competition organized by NYU Abu Dhabi. The goal was to detect fraudulent activities by developing innovative quantum models and integrating them with cutting-edge federated learning frameworks and blockchain technology.
 
 🌌 Key Features
+
+
 Quantum Models for Fraud Detection
 Quantum-inspired approaches enable highly accurate fraud prediction with enhanced efficiency.
 
@@ -14,6 +18,8 @@ Blockchain Integration
 Immutable and decentralized data sharing for federated learning.
 
 🚀 Technical Highlights
+
+
 
 Fig: A high-level view of Quantum-Blockchain Federated Learning
 
