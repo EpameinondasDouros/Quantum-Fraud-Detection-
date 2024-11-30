@@ -196,7 +196,7 @@ Advanced Quantum Algorithms: Explore advanced quantum algorithms for further opt
 📬 Contact
 For any questions or collaboration inquiries, please reach out to your email.
 
-Epameinondas Douros -> epa.douros@gmail.com
+Epameinondas Douros -> epadouros@gmail.com
 
 Konstantinos Dalampekis -> konstantinosdalampekis@gmail.com
 
