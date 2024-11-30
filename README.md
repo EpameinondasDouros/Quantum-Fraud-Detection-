@@ -44,19 +44,20 @@ Quantum Neural Networks (QNN)
 🛡️ Federated Learning
 Ensures data privacy using a distributed model training approach.
 Collaborates across multiple organizations to improve fraud detection accuracy.
+
 🔗 Blockchain Integration
 Adds a layer of security and transparency.
 Tracks data exchanges and ensures model integrity.
-📂 Project Structure
-bash
-Αντιγραφή κώδικα
-📂 Quantum-Fraud-Detection/
-│
-├── 📁 Code/        # Quantum model implementations, Blockchain integration scripts, Aggregation scripts, Cryptography & Hashing, Quantum Key Distribution
-├── 📁 Datasets/            # 2 Datasets
-├── 📁 Papers-Research/    # Federated learning models and orchestration
-└── README.md                 # Project README
 
+📂 Project Structure
+   ```bash
+      📂 Quantum-Fraud-Detection/
+      │
+      ├── 📁 Code/        # Quantum model implementations, Blockchain integration scripts, Aggregation scripts, Cryptography & Hashing, Quantum Key Distribution
+      ├── 📁 Datasets/            # 2 Datasets
+      ├── 📁 Papers-Research/    # Federated learning models and orchestration
+      └── README.md                 # Project README
+```      
 # Quantum Federated Learning for Fraud Detection
 
 This project demonstrates the integration of **Quantum Federated Learning (QFL)** to solve the problem of fraud detection in financial systems. By combining **Quantum-inspired techniques** with **Federated Learning (FL)**, this solution enables decentralized model training while preserving privacy and enhancing security through quantum cryptography.
@@ -152,7 +153,7 @@ The **Adaptive Federated Learning** approach used in this project focuses on sel
 1. Clone this repository:
 
    ```bash
-git clone https://github.com/EpameinondasDouros/Quantum-Fraud-Detection-.git  
+   git clone https://github.com/EpameinondasDouros/Quantum-Fraud-Detection-.git  
 
 2. Install the required dependencies:
 
@@ -168,6 +169,21 @@ Configure Web3 for blockchain integration and deploy the smart contract if you p
 Client Performance: Each client trains a model locally with varying accuracies, which are aggregated into a global model. The performance of the global model is assessed based on client contributions.
 Global Model Evaluation: After several iterations, the global model is evaluated on a combined test set from all clients.
 The results of the global model's performance are stored and visualized over iterations, showing how the model improves through federated learning.
+
+### Model Performance Comparison
+
+| Model           | Dataset      | Accuracy (%) | 
+|-----------------|--------------|--------------|                
+| Client 0        | 99.45        |              |
+| Client 1        | 86.47        |              |      
+| Client 2        | 74.92        |              |
+| Client 3        | 83.14        |              |
+| Client 4        | 92.86        |              |
+| Client 5        | 75.90        |              |
+| Client 6        | 89.52        |              |
+| Client 7        | 85.17        |              |
+| Client 8        | 85.77        |              |
+| Client 9        | 91.37        |              |
 
 ### Future Work
 Real Quantum Hardware: The current implementation uses quantum simulators. Future work includes deploying the model on real quantum hardware to assess the impact of noise and coherence issues.
