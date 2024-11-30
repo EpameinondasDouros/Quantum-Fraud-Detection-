@@ -5,13 +5,13 @@ This folder contains the datasets used for training and evaluating the Quantum F
 
 ### 1. Fraud Detection Bank Dataset
 - **Description**: A dataset containing transactions with labeled fraudulent and non-fraudulent entries, used to train the fraud detection models.
-- **Source**: [Link to dataset](https://some-dataset-link.com) *(you can replace this with the actual dataset source if available)*
+- **Source**: [Link to dataset](https://www.kaggle.com/datasets/volodymyrgavrysh/fraud-detection-bank-dataset-20k-records-binary)
 - **Columns**: 
   - `targets`: Labels indicating fraudulent transactions (0 for non-fraudulent, 1 for fraudulent).
 
 ### 2. Synthetic Financial Fraud Dataset (Optional)
 - **Description**: A synthetic dataset used for simulating fraud detection in a controlled environment. This dataset is generated to balance the classes and simulate more realistic fraud cases.
-- **Source**: (Add your source or mention it as synthetic if generated manually)
+- **Source**: [Link to dataset](https://www.kaggle.com/datasets/ealaxi/paysim1)
 - **Columns**: 
   - `targets`: Labels indicating fraudulent transactions (0 for non-fraudulent, 1 for fraudulent).
 
