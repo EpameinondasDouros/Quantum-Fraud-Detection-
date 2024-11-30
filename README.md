@@ -54,6 +54,7 @@ Tracks data exchanges and ensures model integrity.
       📂 Quantum-Fraud-Detection/
       │
       ├── 📁 source/     # Quantum model implementations, Blockchain integration scripts, Aggregation scripts, Cryptography & Hashing, Quantum Key Distribution
+      ├── 📁 Results/     # Model's evaluation results
       ├── 📁 notebook/      # Full Implementation - Integration of everything together
       ├── 📁 Datasets/            # 2 Datasets
       ├── 📁 Papers-Research/    # Federated learning models and orchestration
