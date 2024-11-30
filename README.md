@@ -83,25 +83,61 @@ The primary goal of this project is to use **Quantum Federated Learning (QFL)** 
 - **Homomorphic Encryption**: Ensures data privacy by encrypting client updates during the aggregation process.
 - **Blockchain**: Uses blockchain technology to store aggregated model updates, ensuring integrity and transparency.
 
-## Implementation Details
+# Quantum Federated Learning for Fraud Detection
 
-### Dataset Preparation
-- The dataset used in this project is the **Synthetic Financial Fraud Dataset** for fraud detection. It is preprocessed using **Standard Scaling** and **SMOTE** (Synthetic Minority Over-sampling Technique) for class balancing.
-- The dataset is split across multiple clients, with each client having a portion of the data to train their local model.
+## Implementation
 
-### Local Training
-- Each client trains a **Quantum-enhanced model** locally on its dataset.
-- The local models are trained using the **Keras** deep learning framework with a **Quantum Neural Network (QNN)** integrated using **PennyLane** for quantum-inspired layers.
-- **Adaptive Federated Learning**: Clients with better local accuracy contribute more to the global model during aggregation, ensuring that high-performing clients have a larger influence on the global model.
+### Technologies Used
 
-### Secure Aggregation
-- **Homomorphic Encryption (CKKS scheme)** is used to encrypt the updates during the federated aggregation process. This allows for secure aggregation of model updates without exposing the raw data.
-- **Shamir’s Secret Sharing** is used to split the encrypted model weights, and **Qhashing** is employed to ensure the integrity of the aggregated model updates.
-- Aggregated model updates are stored on a **blockchain** for transparency and security.
+#### Quantum Federated Learning (QFL):
+- **PennyLane**: This Python library provides the necessary tools for creating quantum circuits and quantum neural networks (QNNs). It is used to implement quantum-enhanced models at each client node. PennyLane enables hybrid quantum-classical learning and allows us to simulate quantum computations for training and evaluating the fraud detection model.
 
-### Evaluation
-- The model's performance is evaluated using **accuracy**, **precision**, **recall**, and **F1-score** on the **global test set** and each client's local test set.
-- The evaluation ensures that clients contributing to the aggregation meet a performance threshold (adaptive federated learning).
+#### Machine Learning:
+- **TensorFlow/Keras**: These libraries were used to implement the classical parts of the model, particularly the layers, optimization, and evaluation of the neural networks. TensorFlow/Keras provides the necessary framework for training the models locally on each client’s dataset.
+
+#### Homomorphic Encryption:
+- **TenSEAL**: A library for performing homomorphic encryption (HE), allowing encrypted data to be processed and aggregated securely. It ensures that client data remains private during training and aggregation.
+- **Shamir's Secret Sharing**: This cryptographic technique was used to split and share model weights among clients in a way that prevents any single client from accessing the entire model's parameters.
+
+#### Blockchain:
+- **Ethereum (via Web3)**: A smart contract was deployed to an Ethereum test network (simulated using Ganache) to store and verify the integrity of model weights using a secure, transparent blockchain system. The blockchain ensures that all model updates are recorded and tamper-proof, ensuring model integrity.
+
+#### Quantum Key Distribution (QKD):
+- **QKD Simulation**: To ensure that model weights and updates are securely transmitted between the clients during the federated learning process, Quantum Key Distribution (QKD) was simulated. QKD allows for the secure exchange of encryption keys over potentially insecure channels, ensuring that the client models' updates are encrypted using keys that have been securely shared. In this project, QKD was simulated to manage the secure encryption of model weights, which would otherwise be vulnerable to interception in classical federated learning.
+
+#### Synthetic Data Generation:
+- **SMOTE (Synthetic Minority Oversampling Technique)**: SMOTE was used to balance the dataset by generating synthetic fraud cases. This ensures that the training dataset for each client is representative and that the model does not suffer from data imbalance issues.
+
+---
+
+### Adaptive Federated Learning Process
+
+The **Adaptive Federated Learning** approach used in this project focuses on selectively aggregating model updates from clients based on their performance, and it adapts the contribution of each client during the aggregation process. Below is a breakdown of the process:
+
+#### Client-Side Training:
+- Each client in the federated network trains its local model using its own data, which may be a subset of the overall dataset. The local models are enhanced by quantum-inspired layers (QNNs) and classical neural network layers.
+- Clients train their models independently on their local datasets, which are securely encrypted using homomorphic encryption, ensuring that sensitive data is never shared or exposed.
+
+#### Adaptive Client Selection:
+- Before aggregating the model updates, the global model's performance on each client’s local test set is evaluated. Clients that perform well locally are selected for the aggregation process.
+- The performance threshold is set based on the accuracy on each client’s local test set. Clients whose accuracy falls below the threshold are excluded from the aggregation to avoid negatively affecting the global model's performance.
+- Clients above the threshold are selected to contribute their model updates to the global model.
+
+#### Weighted Aggregation:
+- The selected clients contribute their model updates, but the aggregation is not performed equally. Instead, each client’s contribution is weighted based on its local performance, specifically its accuracy.
+- A weighted average aggregation method is applied, where each client’s model update is scaled according to its accuracy. This ensures that clients with better performance on their local test sets have a stronger influence on the global model.
+
+#### Secure Model Update and Encryption:
+- Model weights are encrypted using homomorphic encryption to maintain the privacy of the clients' updates. Shamir's Secret Sharing is used to split the weights and share them securely among the clients, ensuring no client has full access to the model parameters.
+- **QKD (Quantum Key Distribution)** is simulated to securely exchange encryption keys between clients, further enhancing the security of the model updates during transmission.
+
+#### Blockchain Integrity Check:
+- After aggregation, the global model's updated weights are hashed using **Qhash**, a quantum-resistant hashing technique, and stored on a blockchain. This step ensures the integrity and authenticity of the global model and prevents tampering with the weights.
+- The blockchain provides a transparent and immutable record of all model updates and serves as a decentralized ledger for verifying the aggregated updates.
+
+#### Global Model Update:
+- The aggregated weights are decrypted and used to update the global model. The global model is then redistributed back to the clients for the next round of training.
+- By using this adaptive federated learning method, the model continuously improves over multiple iterations without compromising the privacy of the clients' data.
 
 ## How to Run
 
