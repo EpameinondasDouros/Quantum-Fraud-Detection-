@@ -53,7 +53,8 @@ Tracks data exchanges and ensures model integrity.
    ```bash
       📂 Quantum-Fraud-Detection/
       │
-      ├── 📁 Code/        # Quantum model implementations, Blockchain integration scripts, Aggregation scripts, Cryptography & Hashing, Quantum Key Distribution
+      ├── 📁 source/     # Quantum model implementations, Blockchain integration scripts, Aggregation scripts, Cryptography & Hashing, Quantum Key Distribution
+      ├── 📁 notebook/      # Full Implementation - Integration of everything together
       ├── 📁 Datasets/            # 2 Datasets
       ├── 📁 Papers-Research/    # Federated learning models and orchestration
       └── README.md                 # Project README
