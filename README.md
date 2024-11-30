@@ -109,15 +109,15 @@ The primary goal of this project is to use **Quantum Federated Learning (QFL)** 
 
 - Python 3.7+
 - Virtual environment (recommended)
+- Tensorflow 2.10.0
 
 ### Installation
 
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/your-username/qfl-fraud-detection.git
-   cd qfl-fraud-detection
- 
+git clone https://github.com/EpameinondasDouros/Quantum-Fraud-Detection-.git  
+
 2. Install the required dependencies:
 
     ```bash
