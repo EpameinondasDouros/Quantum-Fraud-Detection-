@@ -1,1 +1,39 @@
+# Quantum Federated Learning Project Dependencies
+
+# Quantum and Quantum-inspired Libraries
+pennylane==0.22.0
+torch==1.12.0
+
+# Machine Learning Libraries
+tensorflow==2.12.0
+keras==2.12.0
+scikit-learn==1.1.1
+imblearn==0.0
+numpy==1.23.1
+
+# Encryption and Security
+tenseal==0.3.2
+cryptography==39.0.1
+pycryptodome==3.10.1
+
+# Blockchain and Web3 Libraries
+web3==6.1.0
+
+# Synthetic Data Generation
+imbalanced-learn==0.8.1
+
+# Miscellaneous
+pandas==1.4.3
+matplotlib==3.5.2
+scipy==1.9.1
+shap==0.41.0
+
+# Optional (For Blockchain simulation)
+ganache-cli==6.12.2
+
+# Ensure compatibility with cryptography libraries and secure keys
+pysha3==1.0.2
+
+# For simulation (e.g., QKD) tools
+qiskit==0.39.0
 
