@@ -1,0 +1,5 @@
+const SecureAggregation = artifacts.require("SecureAggregation");
+
+module.exports = function (deployer) {
+    deployer.deploy(SecureAggregation);
+};
