@@ -174,18 +174,20 @@ The results of the global model's performance are stored and visualized over ite
 
 ### Model Performance Comparison
 
-| Model           | Dataset      | Accuracy (%) | 
+Dataset : Bank Dataset 20k
+
+| Model           | Accuracy (%) | Recall (%)   | 
 |-----------------|--------------|--------------|                
-| Client 0        | 99.45        |              |
-| Client 1        | 86.47        |              |      
-| Client 2        | 74.92        |              |
-| Client 3        | 83.14        |              |
-| Client 4        | 92.86        |              |
-| Client 5        | 75.90        |              |
-| Client 6        | 89.52        |              |
-| Client 7        | 85.17        |              |
-| Client 8        | 85.77        |              |
-| Client 9        | 91.37        |              |
+| Client 0        | 98.04        | 94.87        |      
+| Client 1        | 98.53        | 97.43        |      
+| Client 2        | 98.53        | 98.29        |
+| Client 3        | 98.53        | 97.43        |
+| Client 4        | 99.51        | 98.29        |
+| Client 5        | 98.04        | 95.72        |
+| Client 6        | 99.26        | 97.43        |
+| Client 7        | 98.53        | 98.29        |
+| Client 8        | 99.02        | 96.58        |
+| Client 9        | 99.26        | 100          |
 
 ### Future Work
 Real Quantum Hardware: The current implementation uses quantum simulators. Future work includes deploying the model on real quantum hardware to assess the impact of noise and coherence issues.
