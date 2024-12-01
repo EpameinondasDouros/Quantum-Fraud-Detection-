@@ -1,0 +1,65 @@
+def update_client_models(client_models, decrypted_global_models):
+        """Update client models with the decrypted global weights."""
+        for node_id, model in enumerate(client_models):
+            if node_id in decrypted_global_models:
+                deserialized_weights = deserialize_model_weights(decrypted_global_models[node_id], model)
+
+                # Apply deserialized weights to the model
+                for layer, (weights, biases) in zip(model.layers, deserialized_weights):
+                    if biases is not None:
+                        layer.set_weights([weights, biases])
+                    else:
+                        layer.set_weights([weights])  # For layers without biases
+        print("Client models updated with new global weights.")
+
+
+ try:
+        # Serialize each CKKS-encrypted vector in the aggregated weights
+        serialized_aggregated_weights = str([
+            weight.serialize().hex() for weight in aggregated_encrypted_weights
+            if hasattr(weight, "serialize")  # Ensure the object is serializable
+        ])
+
+        # Compute the Qhash
+        aggregated_qhash = qhash(serialized_aggregated_weights)
+        print(f"Aggregated Encrypted Qhash: {aggregated_qhash}")
+
+
+        # Store the aggregated Qhash on the blockchain
+        print("Storing aggregated Qhash on the blockchain...")
+        aggregated_qhash_bytes32 = str_to_bytes32(aggregated_qhash)  # Convert to bytes32
+        tx = contract.functions.storeAggregatedQhash(aggregated_qhash_bytes32).transact()
+        receipt = web3.eth.wait_for_transaction_receipt(tx)
+        print(f"Aggregated Qhash successfully stored on the blockchain. Tx Hash: {receipt.transactionHash.hex()}")
+    except Exception as e:
+        print(f"Error generating or storing aggregated Qhash: {e}")
+
+
+
+    qkd_resources = simulate_qkd_resources(NUM_CLIENTS)
+    global_model = client_models[0]  # Example global model
+    serialized_weights = serialize_model_weights(global_model)
+
+    # Encrypt serialized weights
+    encrypted_global_models = {}
+    for node_id, resources in qkd_resources.items():
+        key = resources["key"]
+        encrypted_global_models[node_id] = encrypt_with_aes(serialized_weights, key)
+
+    print("Global model encrypted for all nodes using AES with QKD keys.")
+
+    
+
+    # Decrypt and update client models
+    decrypted_global_models = {}
+    for node_id, encrypted_weights in encrypted_global_models.items():
+        key = qkd_resources[node_id]["key"]
+        decrypted_weights = decrypt_with_aes(encrypted_weights, key)
+        decrypted_global_models[node_id] = decrypted_weights
+
+    client_contributions = []
+
+
+    update_client_models(client_models, decrypted_global_models)
+
+    print("Decrypted weights applied to all client models. Ready for the next iteration.")
