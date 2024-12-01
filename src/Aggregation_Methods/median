@@ -1,0 +1,42 @@
+def median_aggregator_qnn_parameters(encrypted_params, factors):
+    """
+    Perform weighted median aggregation on QNN parameters.
+    Each parameter across all clients is aggregated using the weighted median.
+    """
+    import numpy as np
+    from scipy.stats import rankdata
+
+    total_factor = sum(factors)
+    num_layers = len(encrypted_params[0])  # Assuming all clients have the same layer structure
+    aggregated_params = []
+
+    for layer_idx in range(num_layers):
+        # Extract all client parameters for the current layer
+        layer_params = [client[layer_idx] for client in encrypted_params]
+
+        # Decrypt and prepare for weighted median computation
+        layer_stack = np.array([param.decrypt() for param in layer_params])  # Decrypt if needed
+        weights = np.array(factors) / total_factor  # Normalize factors to get weights
+
+        # Compute the weighted median along the client axis
+        median_layer = np.zeros_like(layer_stack[0])
+        for param_idx in range(layer_stack.shape[1]):  # Assuming 1D parameter arrays
+            param_values = layer_stack[:, param_idx]
+            # Sort values and associated weights
+            sorted_indices = np.argsort(param_values)
+            sorted_values = param_values[sorted_indices]
+            sorted_weights = weights[sorted_indices]
+
+            # Compute cumulative weights
+            cumulative_weights = np.cumsum(sorted_weights)
+
+            # Find the weighted median
+            median_index = np.searchsorted(cumulative_weights, 0.5)
+            median_layer[param_idx] = sorted_values[median_index]
+
+        # Re-encrypt if encryption is used (replace `encrypt` with your actual encryption method)
+        aggregated_params.append(median_layer)  # You may re-encrypt here if required
+        
+        print(f"Layer {layer_idx}: Aggregated parameters size = {len(median_layer)}")
+
+    return aggregated_params
